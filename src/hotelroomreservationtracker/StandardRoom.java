@@ -10,5 +10,8 @@ public class StandardRoom extends Room {
         this.bedType = bedType;
     }
 
-     
+   
+    public String getBedType() {
+        return bedType;
+}
 }
