@@ -27,7 +27,17 @@ public class Room {
     public String getStatus() {
         return status;
     }
-       
+        // Setters
+    public void setGuestName(String guestName) {
+    if (guestName != null && !guestName.trim().isEmpty()) {
+        this.guestName = guestName;
+    }
+
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     }
 
