@@ -15,6 +15,19 @@ public class Room {
         this.status = "Available";
         
     }
-   
+    // Getters
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public String getGuestName() {
+        return guestName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+       
+
     }
 
