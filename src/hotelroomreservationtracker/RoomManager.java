@@ -3,13 +3,13 @@ package hotelroomreservationtracker;
  
 public class RoomManager {
     
-    
+   
     private Room[] rooms = new Room[20];
 
-  
+    
     private int roomCount = 0;
     
-   
+    
     public boolean addRoom(Room room) {
 
           if (room == null || searchRoom(room.getRoomNumber()) != null) {
@@ -39,7 +39,7 @@ public class RoomManager {
 
         return result;
          }
-  
+ 
     public Room searchRoom(int roomNumber) {
 
         for (int i = 0; i < roomCount; i++) {
@@ -52,7 +52,7 @@ public class RoomManager {
         return null;
     }
 
-    
+   
     public boolean assignRoom(int roomNumber, String guestName) {
 
         Room room = searchRoom(roomNumber);
@@ -84,10 +84,18 @@ public class RoomManager {
         return false;
     }
 
-   
+  
     public int getRoomCount() {
         return roomCount;
     }
+
  
+    public Room getRoomAt(int index) {
+        if (index >= 0 && index < roomCount) {
+            return rooms[index];
+        }
+
+        return null;
+    }
 
 }
