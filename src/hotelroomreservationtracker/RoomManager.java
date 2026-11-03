@@ -24,78 +24,9 @@ public class RoomManager {
 
         return false;
     }
-         public String displayRooms() {
+        
+         public Room searchRoom(int roomNumber) {
 
-        String result = "";
+        
+    
 
-        for (int i = 0; i < roomCount; i++) {
-
-            result += "Room Number: " + rooms[i].getRoomNumber() + "\n";
-            result += "Guest Name: " + rooms[i].getGuestName() + "\n";
-            result += "Status: " + rooms[i].getStatus() + "\n";
-
-            result += "--------------------\n";
-        }
-
-        return result;
-         }
-    // Search for a room using Linear Search
-    public Room searchRoom(int roomNumber) {
-
-        for (int i = 0; i < roomCount; i++) {
-
-            if (rooms[i].getRoomNumber() == roomNumber) {
-                return rooms[i];
-            }
-        }
-
-        return null;
-    }
-
-    // Assign a room to a guest
-    public boolean assignRoom(int roomNumber, String guestName) {
-
-        Room room = searchRoom(roomNumber);
-
-        if (room != null && room.getStatus().equals("Available")) {
-
-            room.setGuestName(guestName);
-            room.setStatus("Occupied");
-
-            return true;
-        }
-
-        return false;
-    }
-
-    // Vacate a room
-    public boolean vacateRoom(int roomNumber) {
-
-        Room room = searchRoom(roomNumber);
-
-        if (room != null && room.getStatus().equals("Occupied")) {
-
-            room.setGuestName("None");
-            room.setStatus("Available");
-
-            return true;
-        }
-
-        return false;
-    }
-
-    // Get the number of stored rooms
-    public int getRoomCount() {
-        return roomCount;
-    }
-
-    // Get a room using its array index
-    public Room getRoomAt(int index) {
-        if (index >= 0 && index < roomCount) {
-            return rooms[index];
-        }
-
-        return null;
-    }
-
-}
