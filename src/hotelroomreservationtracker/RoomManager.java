@@ -108,6 +108,22 @@ public class RoomManager {
     public int getRoomCount() {
         return roomCount;
     }
+    
+        // Count the available rooms
+public int getAvailableRoomCount() {
+
+    int count = 0;
+
+    for (int i = 0; i < roomCount; i++) {
+
+        if (rooms[i].getStatus().equals("Available")) {
+            count++;
+        }
+    
+    }
+    return count;
+
+}
 
     public Room getRoomAt(int index) {
 
