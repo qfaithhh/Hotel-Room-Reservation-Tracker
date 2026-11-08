@@ -595,6 +595,12 @@ public class HotelDashboard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
+         // Display a message if no rooms have been added
+        if (manager.getRoomCount() == 0) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "No rooms available. Please add a room first.");
+    return;
+}
     // Get the table model
     javax.swing.table.DefaultTableModel model =
             (javax.swing.table.DefaultTableModel) tblRooms.getModel();
