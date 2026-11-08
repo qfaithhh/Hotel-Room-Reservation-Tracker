@@ -12,10 +12,10 @@ public class HotelDashboard extends javax.swing.JFrame {
     /**
      * Creates new form HotelDashboard
      */
-    public HotelDashboard() {
+  public HotelDashboard() {
         initComponents();
      getContentPane().setBackground(new java.awt.Color(243, 240, 232));
-     
+
     java.awt.Container oldContent = getContentPane();
 
     javax.swing.JScrollPane scrollPane =
@@ -26,6 +26,7 @@ public class HotelDashboard extends javax.swing.JFrame {
 
     setContentPane(scrollPane);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -377,10 +378,10 @@ public class HotelDashboard extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel13)
-                                        .addComponent(jLabel14)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel14)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -399,10 +400,10 @@ public class HotelDashboard extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(cmbRoomType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAddRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnVacateRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(btnAssignRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,7 +436,7 @@ public class HotelDashboard extends javax.swing.JFrame {
         roomNumber = Integer.parseInt(numberText);
     } catch (NumberFormatException e) {
         javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter a valid room number.");
+                "Invalid room number. Please enter a valid number.");
         return;
     }
 
@@ -462,7 +463,7 @@ public class HotelDashboard extends javax.swing.JFrame {
     } else {
 
         javax.swing.JOptionPane.showMessageDialog(this,
-                "Room not found!");
+                "Room not found. Please check the room number and try again.");
 
     }
 
@@ -494,7 +495,7 @@ public class HotelDashboard extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Room successfully assigned!");
         
-           jButton1ActionPerformed(null);
+          jButton1ActionPerformed(null);
     } else {
 
         javax.swing.JOptionPane.showMessageDialog(this,
