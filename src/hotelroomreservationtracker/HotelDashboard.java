@@ -477,11 +477,12 @@ private void updateAvailableRoomCount() {
                 + "Room Type: " + roomType + "\n"
                 + "Status: " + room.getStatus());
 
+             txtSearchRoom.setText("");
     } else {
 
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Room not found. Please check the room number and try again.");
-
+                   
     }
 
     }//GEN-LAST:event_btnSearchActionPerformed
