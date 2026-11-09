@@ -595,7 +595,10 @@ if (confirm == javax.swing.JOptionPane.YES_OPTION) {
 
     // Get selected room number
     String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
-
+// Reset form after successful room addition
+cmbRoomNumber.setSelectedIndex(0);
+txtGuestName.setText("");
+cmbRoomType.setSelectedIndex(0);
     int roomNumber;
 
     try {
