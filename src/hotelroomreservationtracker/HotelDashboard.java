@@ -549,6 +549,14 @@ private void updateAvailableRoomCount() {
         return;
     }
 
+     // Ask for confirmation before vacating
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to vacate this room?",
+            "Confirm Vacate Room",
+            javax.swing.JOptionPane.YES_NO_OPTION
+    );
+    
     // Vacate the room
     if (manager.vacateRoom(roomNumber)) {
 
