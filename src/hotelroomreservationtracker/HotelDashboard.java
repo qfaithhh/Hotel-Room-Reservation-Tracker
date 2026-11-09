@@ -452,10 +452,15 @@ private void updateAvailableRoomCount() {
     try {
         roomNumber = Integer.parseInt(numberText);
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Invalid room number. Please enter a valid number.");
-        return;
-    }
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    txtSearchRoom.setText("");
+    txtSearchRoom.requestFocus();
+    return;
+}
 
     // Search using Linear Search from RoomManager
     Room room = manager.searchRoom(roomNumber);
@@ -480,8 +485,16 @@ private void updateAvailableRoomCount() {
              txtSearchRoom.setText("");
     } else {
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Room not found. Please check the room number and try again.");
+
+    javax.swing.JOptionPane.showMessageDialog(this,
+        "Room number " + roomNumber
+        + " does not exist in the table. Please try again.",
+        "Room Not Found",
+        javax.swing.JOptionPane.ERROR_MESSAGE);
+
+txtSearchRoom.setText("");
+txtSearchRoom.requestFocus();
+
                    
     }
 
@@ -510,12 +523,17 @@ if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
 
     try {
         roomNumber = Integer.parseInt(numberText);
-    } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter a valid room number.");
-        return;
-    }
+   } catch (NumberFormatException e) {
 
+    txtSearchRoom.setText("");
+
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    return;
+}
     if (manager.assignRoom(roomNumber, guestName)) {
 
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -532,10 +550,15 @@ if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
 
     } else {
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Room not found or already occupied!");
-
-    }
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Room number " + roomNumber
+            + " does not exist in the table. Please try again.",
+            "Room Not Found",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+       txtSearchRoom.setText("");
+txtSearchRoom.requestFocus();
+    txtSearchRoom.setText("");
+}
 
     }//GEN-LAST:event_btnAssignRoomActionPerformed
 
@@ -560,11 +583,16 @@ if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
     try {
         roomNumber = Integer.parseInt(numberText);
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter a valid room number.");
-        return;
-    }
 
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    txtSearchRoom.setText("");
+    txtSearchRoom.requestFocus();
+    return;
+}
         // Ask for confirmation before vacating
     int confirm = javax.swing.JOptionPane.showConfirmDialog(
             this,
