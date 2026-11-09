@@ -522,6 +522,11 @@ if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
         
             updateAvailableRoomCount();
 
+            
+    // Reset form after successful room assignment
+    cmbRoomNumber.setSelectedIndex(0);
+    txtGuestName.setText("");
+            
     jButton1ActionPerformed(null);
 
     } else {
@@ -651,6 +656,7 @@ cmbRoomType.setSelectedIndex(0);
         if (manager.getRoomCount() == 0) {
     javax.swing.JOptionPane.showMessageDialog(this,
             "No rooms available. Please add a room first.");
+     
     return;
 }
        
