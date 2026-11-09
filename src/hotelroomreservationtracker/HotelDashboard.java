@@ -452,10 +452,15 @@ private void updateAvailableRoomCount() {
     try {
         roomNumber = Integer.parseInt(numberText);
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Invalid room number. Please enter a valid number.");
-        return;
-    }
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    txtSearchRoom.setText("");
+    txtSearchRoom.requestFocus();
+    return;
+}
 
     // Search using Linear Search from RoomManager
     Room room = manager.searchRoom(roomNumber);
@@ -477,11 +482,20 @@ private void updateAvailableRoomCount() {
                 + "Room Type: " + roomType + "\n"
                 + "Status: " + room.getStatus());
 
+             txtSearchRoom.setText("");
     } else {
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Room not found. Please check the room number and try again.");
 
+    javax.swing.JOptionPane.showMessageDialog(this,
+        "Room number " + roomNumber
+        + " does not exist in the table. Please try again.",
+        "Room Not Found",
+        javax.swing.JOptionPane.ERROR_MESSAGE);
+
+txtSearchRoom.setText("");
+txtSearchRoom.requestFocus();
+
+                   
     }
 
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -492,22 +506,34 @@ private void updateAvailableRoomCount() {
    String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
     String guestName = txtGuestName.getText().trim();
 
-    if (numberText.isEmpty() || guestName.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter the room number and guest name.");
-        return;
-    }
+  // Check if room number and guest name are empty
+if (numberText.isEmpty() || guestName.isEmpty()) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Please enter the room number and guest name.");
+    return;
+}
 
+// Validate guest name format
+if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid guest name. Please enter letters only.");
+    return;
+}
     int roomNumber;
 
     try {
         roomNumber = Integer.parseInt(numberText);
-    } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter a valid room number.");
-        return;
-    }
+   } catch (NumberFormatException e) {
 
+    txtSearchRoom.setText("");
+
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    return;
+}
     if (manager.assignRoom(roomNumber, guestName)) {
 
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -515,22 +541,35 @@ private void updateAvailableRoomCount() {
         
             updateAvailableRoomCount();
 
+            
+    // Reset form after successful room assignment
+    cmbRoomNumber.setSelectedIndex(0);
+    txtGuestName.setText("");
+            
     jButton1ActionPerformed(null);
 
     } else {
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Room not found or already occupied!");
-
-    }
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Room number " + roomNumber
+            + " does not exist in the table. Please try again.",
+            "Room Not Found",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+       txtSearchRoom.setText("");
+txtSearchRoom.requestFocus();
+    txtSearchRoom.setText("");
+}
 
     }//GEN-LAST:event_btnAssignRoomActionPerformed
 
     private void btnVacateRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacateRoomActionPerformed
-           // Get the room number
-          
-           
-   String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
+   
+
+   
+
+// Get the room number
+    String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
+
     // Check if the field is empty
     if (numberText.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -544,10 +583,25 @@ private void updateAvailableRoomCount() {
     try {
         roomNumber = Integer.parseInt(numberText);
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter a valid room number.");
-        return;
-    }
+
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid room number. Please enter a valid number.",
+            "Invalid Input",
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    txtSearchRoom.setText("");
+    txtSearchRoom.requestFocus();
+    return;
+}
+        // Ask for confirmation before vacating
+    int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to vacate this room?",
+            "Confirm Vacate Room",
+            javax.swing.JOptionPane.YES_NO_OPTION
+    );
+// Proceed only if YES is selected
+if (confirm == javax.swing.JOptionPane.YES_OPTION) {
 
     // Vacate the room
     if (manager.vacateRoom(roomNumber)) {
@@ -556,14 +610,16 @@ private void updateAvailableRoomCount() {
                 "Room successfully vacated!");
 
         updateAvailableRoomCount();
-     cmbRoomNumber.setSelectedIndex(0);
+        cmbRoomNumber.setSelectedIndex(0);
         txtGuestName.setText("");
-       jButton1ActionPerformed(null);
-    } else {
+        jButton1ActionPerformed(null);
 
+    } else {
+        
+    
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Room not found or is not occupied!");
-
+    }
     }
     }//GEN-LAST:event_btnVacateRoomActionPerformed
 
@@ -573,7 +629,10 @@ private void updateAvailableRoomCount() {
 
     // Get selected room number
     String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
-
+// Reset form after successful room addition
+cmbRoomNumber.setSelectedIndex(0);
+txtGuestName.setText("");
+cmbRoomType.setSelectedIndex(0);
     int roomNumber;
 
     try {
@@ -626,6 +685,7 @@ private void updateAvailableRoomCount() {
         if (manager.getRoomCount() == 0) {
     javax.swing.JOptionPane.showMessageDialog(this,
             "No rooms available. Please add a room first.");
+     
     return;
 }
        
