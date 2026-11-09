@@ -527,10 +527,13 @@ private void updateAvailableRoomCount() {
     }//GEN-LAST:event_btnAssignRoomActionPerformed
 
     private void btnVacateRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVacateRoomActionPerformed
-           // Get the room number
-          
-           
-   String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
+   
+
+   
+
+// Get the room number
+    String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
+
     // Check if the field is empty
     if (numberText.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this,
@@ -549,14 +552,16 @@ private void updateAvailableRoomCount() {
         return;
     }
 
-     // Ask for confirmation before vacating
+        // Ask for confirmation before vacating
     int confirm = javax.swing.JOptionPane.showConfirmDialog(
             this,
             "Are you sure you want to vacate this room?",
             "Confirm Vacate Room",
             javax.swing.JOptionPane.YES_NO_OPTION
     );
-    
+// Proceed only if YES is selected
+if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+
     // Vacate the room
     if (manager.vacateRoom(roomNumber)) {
 
@@ -564,14 +569,16 @@ private void updateAvailableRoomCount() {
                 "Room successfully vacated!");
 
         updateAvailableRoomCount();
-     cmbRoomNumber.setSelectedIndex(0);
+        cmbRoomNumber.setSelectedIndex(0);
         txtGuestName.setText("");
-       jButton1ActionPerformed(null);
-    } else {
+        jButton1ActionPerformed(null);
 
+    } else {
+        
+    
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Room not found or is not occupied!");
-
+    }
     }
     }//GEN-LAST:event_btnVacateRoomActionPerformed
 
