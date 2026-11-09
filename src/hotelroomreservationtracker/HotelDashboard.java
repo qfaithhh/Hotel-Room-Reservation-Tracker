@@ -492,12 +492,19 @@ private void updateAvailableRoomCount() {
    String numberText = cmbRoomNumber.getSelectedItem().toString().trim();
     String guestName = txtGuestName.getText().trim();
 
-    if (numberText.isEmpty() || guestName.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Please enter the room number and guest name.");
-        return;
-    }
+  // Check if room number and guest name are empty
+if (numberText.isEmpty() || guestName.isEmpty()) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Please enter the room number and guest name.");
+    return;
+}
 
+// Validate guest name format
+if (!guestName.matches("[\\p{L}][\\p{L} .'-]*")) {
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Invalid guest name. Please enter letters only.");
+    return;
+}
     int roomNumber;
 
     try {
